@@ -1,49 +1,7 @@
-"""
-Name: DES cipher tools in Python 3
-Author: Yifan Cao
-Date: May 8, 2018
-
-Description:
-
-This program implements some DES cipher tools in Python 3.
-
-There are two example functions: example_DES() and example_ArbiDES(). To run the examples, simply open a terminal and type:
-```
-    python3 <filename>
-```
-Or you may import it as a library in another Python 3 file. Try either of the follows:
-```
-    import <filename w/o extension>
-    from <filename w/o extension> import *
-```
-
-All rights are reserved.
-"""
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 
 import random
-
-class Cipher:
-    """
-    A dummy class for a cipher model.
-    A cipher model generates a key, and encrypts and decrypts messages using the key.
-    """
-    def __init__(self, key = None):
-        """
-        Generate a key randomly if the `key` is None, or use the provided `key`.
-        """
-        pass
-
-    def enc(self, msg):
-        """
-        Encrypt a message `msg` and return the ciphertext.
-        """
-        pass
-
-    def dec(self, ciph):
-        """
-        Decrypt a ciphertext `ciph` and return the plaintext.
-        """
-        pass
 
 # Selection tables are declared below.
 IP = (
@@ -269,10 +227,9 @@ def cipher_func(r, subkey):
     output = select_bits(after_select, P, 32)
     return output
 
-class DES(Cipher):
+class DES:
     """
     The Data Encryption Standard (DES) cipher.
-    Inherits from the base Cipher class.
     """
     def __init__(self, key = None):
         """
@@ -319,7 +276,7 @@ class DES(Cipher):
 class ArbiDES(DES):
     """
     The DES cipher, which accepts arbitrary long messages. For the sake of convenience, it takes a UTF-8 Python string as the input.
-    Uses PKCS #5 Padding.
+    Uses ECB and PKCS #5 Padding.
     Inherits from the DES class.
     """
     def enc(self, msg):
